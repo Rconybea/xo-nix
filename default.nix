@@ -13,11 +13,14 @@ with pkgs;
 
 let
   packages = rec {
-    randomgen = callPackage ./pkgs/randomgen { indentlog = packages.indentlog; };
-    indentlog = callPackage ./pkgs/indentlog {};
+    xo_cmake = callPackage ./pkgs/xo-cmake {};
+    indentlog = callPackage ./pkgs/indentlog { xo_cmake = packages.xo_cmake; };
+    subsys = callPackage ./pkgs/subsys { xo_cmake = packages.xo_cmake; };
+    randomgen = callPackage ./pkgs/randomgen { indentlog = packages.indentlog; xo_cmake = packages.xo_cmake; };
+    refcnt = callPackage ./pkgs/refcnt { indentlog = packages.indentlog; xo_cmake = packages.xo_cmake; };
+    reflect = callPackage ./pkgs/reflect { indentlog = packages.indentlog; refcnt = packages.refcnt; subsys = packages.subsys; xo_cmake = packages.xo_cmake; };
 
     inherit pkgs;
   };
 in
 packages
-
