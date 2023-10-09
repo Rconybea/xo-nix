@@ -4,6 +4,8 @@ setup alt package repository
 indentlog
 randomgen
 refcnt
+subsys
+reflect
 
 This is the pre-nix-flakes way of setting up a private package repository.
 It's a lot of work to maintain,   so not trying too hard to keep it up-to-date.
